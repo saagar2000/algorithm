@@ -1,8 +1,9 @@
 package trees.binary;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@EqualsAndHashCode
 public class TreeNode {
     public TreeNode parent;
     public int val;

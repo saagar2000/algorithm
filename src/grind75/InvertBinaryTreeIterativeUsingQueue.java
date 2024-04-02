@@ -25,8 +25,8 @@ public class InvertBinaryTreeIterativeUsingQueue {
       TreeNode node = arrayDeque.poll(); // 4
 
       TreeNode left = node.left; // 2
-      node.setLeft(node.right); // 7
-      node.setRight(left); // swap
+      node.left = node.right; // 7
+      node.right = left; // swap
 
       if (node.left != null) arrayDeque.add(node.left);
       if (node.right != null) arrayDeque.add(node.right);
