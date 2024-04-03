@@ -14,27 +14,25 @@ public class LowestCommonAncestorOfABinaryTreeIII {
     // 1,2,3,4 // i = 1; 2i + 1 = 3, 2i + 2 = 4
     TreeNode root = Util.createTree(values);
     TreeNode p = Util.dfs(root, 1);
-    TreeNode q = Util.dfs(root, 7);
-    System.out.println(lowestCommonAncestor(p, q));
+    TreeNode q = Util.dfs(root, 88);
+    System.out.println(lowestCommonAncestor(p, q).val);
   }
 
   private static TreeNode lowestCommonAncestor(TreeNode p, TreeNode q) {
-    Set<TreeNode> pNodes = new HashSet<>();
+    Set<Integer> pNodes = new HashSet<>();
     recursive(p, pNodes);
-    TreeNode lca = recursive(q, pNodes);
-    return lca;
+    return recursive(q, pNodes);
   }
 
-  private static TreeNode recursive(TreeNode n, Set<TreeNode> nodes) {
+  private static TreeNode recursive(TreeNode n, Set<Integer> nodes) {
     if (n.parent == null) {
       return null;
     }
-    recursive(n.parent, nodes);
-    if (nodes.contains(n)) {
-      return n;
+    if (nodes.contains(n.parent.val)) {
+      return n.parent;
     } else {
-      nodes.add(n);
+      nodes.add(n.parent.val);
     }
-    return null;
+    return recursive(n.parent, nodes);
   }
 }
