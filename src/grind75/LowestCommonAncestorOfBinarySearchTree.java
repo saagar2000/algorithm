@@ -4,32 +4,29 @@ import trees.binary.*;
 
 public class LowestCommonAncestorOfBinarySearchTree {
   public static void main(String[] args) {
-    Integer[] values = {1, 2};
+    Integer[] values = {6,2,8,0,4,7,9,null,null,3,5};
+    //            6
+    //       2,       8,
+    //     0   4    7   9
+    //        3 5
+    // 1,2,3,4 // i = 1; 2i + 1 = 3, 2i + 2 = 4
     TreeNode root = Util.createTree(values);
-    System.out.println(lowestCommonAncestor(root, 1, 2).val);
+    Integer[] pValues = {0};
+    Integer[] qValues = {4, 3, 5};
+    TreeNode p1 = Util.createTree(pValues);
+    TreeNode q1 = Util.createTree(qValues);
+    System.out.println(lowestCommonAncestor(root, p1, q1).val);
   }
 
-  public static TreeNode lowestCommonAncestor(TreeNode root, int p, int q) {
-    if (root == null) {
+  public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if(root == null) {
       return null;
     }
-    // determine location of p and q
-    // three possible cases
-    // both left, both right and left/right - find the lowest ancestor where they converge
-    if (root.val == p || root.val == q) {
-      return root;
+    if(p.val < root.val && q.val < root.val) {
+      return lowestCommonAncestor(root.left, p, q);
+    } else if(q.val > root.val && p.val > root.val) {
+      return lowestCommonAncestor(root.right, p, q);
     }
-
-    TreeNode ancestorInLeft = lowestCommonAncestor(root.left, p, q);
-    TreeNode ancestorInRight = lowestCommonAncestor(root.right, p, q);
-
-    if (ancestorInRight != null && ancestorInLeft != null) {
-      return root;
-    }
-
-    if (ancestorInRight != null) {
-      return ancestorInRight;
-    }
-    return ancestorInLeft;
+    return root;
   }
 }
