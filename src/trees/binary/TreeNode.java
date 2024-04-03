@@ -3,7 +3,7 @@ package trees.binary;
 import lombok.*;
 
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "parent")
 public class TreeNode {
     public TreeNode parent;
     public int val;

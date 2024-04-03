@@ -5,15 +5,15 @@ import trees.binary.*;
 public class LowestCommonAncestorOfABinaryTree {
 
   public static void main(String[] args) {
-    Integer[] values = {3, 5, 1, 6, 2, 0, 8, null, null, 7, 4};
+    Integer[] values = {6, 5, 4, 3, null, null, 2, null, 7, null, null, null, null, 1};
     //            3
     //        5,      1,
     //     6    2   0   8
     //        7   4
     // 1,2,3,4 // i = 1; 2i + 1 = 3, 2i + 2 = 4
     TreeNode root = Util.createTree(values);
-    Integer[] pValues = {1, 0, 8};
-    Integer[] qValues = {2, 7, 4};
+    Integer[] pValues = {3, null, 7};
+    Integer[] qValues = {4, null, 2, null, null, 1};
     TreeNode p = Util.createTree(pValues);
     TreeNode q = Util.createTree(qValues);
     System.out.println(findLca(root, p, q));
