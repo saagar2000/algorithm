@@ -12,9 +12,10 @@ public class ReverseLinkedList {
         Node node3 = new Node(3);
         linkedList.append(node3);
         Node head = linkedList.head;
+        reverse(head);
     }
 
-    private Node reverse(Node head) {
+    private static Node reverse(Node head) {
         Node prev = null;
         Node current = head;
         while(current != null) {
