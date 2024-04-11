@@ -5,12 +5,14 @@ import linkedlist.*;
 
 public class LRUCache {
   public static void main(String[] args) {
-    LRUCacheInternal lruCacheInternal = new LRUCacheInternal(10);
-    lruCacheInternal.put(77, 2);
-    lruCacheInternal.put(2, 4);
-    lruCacheInternal.put(4, 5);
-    lruCacheInternal.put(1, 6);
-    lruCacheInternal.put(5, 9);
+    LRUCacheInternal lruCacheInternal = new LRUCacheInternal(2);
+    lruCacheInternal.get(2);
+    lruCacheInternal.put(2, 6);
+    lruCacheInternal.get(1);
+    lruCacheInternal.put(1, 5);
+    lruCacheInternal.put(1, 2);
+    lruCacheInternal.get(1);
+    lruCacheInternal.get(2);
     lruCacheInternal.print();
   }
 
@@ -32,12 +34,7 @@ public class LRUCache {
     }
 
     private void put(int key, int value) {
-      if (size == capacity) {
-        Node<Map.Entry<Integer, Integer>> remove = this.tail.prev;
-        unlinkNode(remove);
-        cache.remove(remove.data.getKey());
-        size--;
-      }
+
       Node<Map.Entry<Integer, Integer>> node;
       if (cache.containsKey(key)) {
         node = cache.get(key);
@@ -45,6 +42,12 @@ public class LRUCache {
         moveToHead(node);
         size--;
       } else {
+        if (size == capacity) {
+          Node<Map.Entry<Integer, Integer>> remove = this.tail.prev;
+          unlinkNode(remove);
+          cache.remove(remove.data.getKey());
+          size--;
+        }
         node = new Node<>(new AbstractMap.SimpleEntry<>(key, value));
         addToHead(node);
       }
