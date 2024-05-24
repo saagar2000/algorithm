@@ -18,7 +18,7 @@ public class InorderTraversal {
   /**
    * Traverse to the leftmost node and remove the node at the leftmost and add to result and mark
    * the node as visited. If leftmost has right child add it to the stack and repeat the process.
-   *
+   * NOTE - IN ORDER TRAVERSAL OF BST RESULTS IN ASCENDING SORT ORDER
    * @param root
    * @return
    */

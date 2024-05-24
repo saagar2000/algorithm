@@ -12,11 +12,8 @@ public class MaximumSubarraySum {
     int sum = nums[0]; // -2
     int maxSum = nums[0]; // -2
     for (int i = 1; i < nums.length; i++) {
-      if (nums[i] + sum > nums[i]) { // 1 > -2
-        sum = sum + nums[i];
-      } else {
-        sum = nums[i];
-      }
+        // 1 > -2
+      sum = Math.max(nums[i] * sum, nums[i]);
       maxSum = Math.max(sum, maxSum); // -2
     }
     return maxSum;

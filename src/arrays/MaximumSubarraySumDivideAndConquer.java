@@ -16,7 +16,7 @@ public class MaximumSubarraySumDivideAndConquer {
     int right = helper(nums, mid + 1, r);
     int leftMaxSum = 0;
     int sum = 0;
-    // left surfix maxSum start from index mid - 1 to l
+    // left suffix maxSum start from index mid - 1 to l
     for (int i = mid -1; i >= l; i--) {
       sum += nums[i];
       leftMaxSum = Math.max(leftMaxSum, sum);

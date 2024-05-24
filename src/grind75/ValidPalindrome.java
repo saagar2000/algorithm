@@ -2,30 +2,33 @@ package grind75;
 
 public class ValidPalindrome {
 
-    public static void main(String[] args){
-        String s = "A man, a plan, a canal: Panama";
-        System.out.println(isValidPalindrome(s));
-    }
+  public static void main(String[] args) {
+    String s = "lcupucul";
+    System.out.println(isValidPalindrome(s));
+  }
 
-    private static boolean isValidPalindrome(String s) {
-        int left = 0;
-        int right = s.length() - 1;
+  private static boolean isValidPalindrome(String s) {
+    int left = 0;
+    int right = s.length() - 1;
 
-        while(left < right) {
-            char leftChar = s.charAt(left);
-            boolean isLeftCharLetterOrDigit = Character.isLetterOrDigit(leftChar);
-            if(!isLeftCharLetterOrDigit) left++;
-            char rightChar = s.charAt(right);
-            boolean isRightCharLetterOrDigit = Character.isLetterOrDigit(rightChar);
-            if(!isRightCharLetterOrDigit) right--;
-            if(isLeftCharLetterOrDigit && isRightCharLetterOrDigit) {
-                if(Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar)) {
-                    return false;
-                }
-                left++;
-                right--;
-            }
-        }
-        return true;
+    while (left < right) {
+      char leftChar = s.charAt(left);
+      char rightChar = s.charAt(right);
+      if (leftChar != rightChar) {
+        return isPalindrome(s, ++left, right) || isPalindrome(s, left, --right);
+      }
     }
+    return true;
+  }
+
+  private static boolean isPalindrome(String s, int left, int right) {
+    for (int i = left, j = right; i < j; i++, j--) {
+      char leftChar = s.charAt(i);
+      char rightChar = s.charAt(j);
+      if (leftChar != rightChar) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

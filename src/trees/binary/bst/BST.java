@@ -15,7 +15,7 @@ public class BST {
     System.out.println(search(root, 20));
     traverse(root);*/
     System.out.println(
-        inOrderSuccessor(root, new TreeNode(25)));
+        inOrderSuccessor(root, new TreeNode(20)));
   }
 
   public static TreeNode insertRecursively(TreeNode root, int key) {
